@@ -80,4 +80,4 @@ Se você encontrar problemas relacionados ao "react-refresh", execute o script `
 
 ## Contato
 
-Para mais informações ou suporte, entre em contato com a equipe de desenvolvimento. 
+Para mais informações ou suporte, entre em contato com douglaslpolinto@gmail.com. 
