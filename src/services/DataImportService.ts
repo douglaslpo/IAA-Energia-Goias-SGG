@@ -79,11 +79,16 @@ class DataImportService {
   private normalizeValue(value: any): number {
     if (typeof value === 'number') return value
     if (typeof value === 'string') {
-      // Remove caracteres não numéricos exceto ponto e vírgula
-      const cleanValue = value.replace(/[^\d.,]/g, '')
-      // Substitui vírgula por ponto
-      const normalizedValue = cleanValue.replace(',', '.')
-      return parseFloat(normalizedValue) || 0
+      // Remove qualquer espaçamento
+      let cleanValue = value.trim()
+      // Converte vírgula em ponto para tratar formatos brasileiros/europeus
+      cleanValue = cleanValue.replace(/,/g, '.')
+      // Remove todos os pontos exceto o último (caso existam separadores de milhar)
+      const parts = cleanValue.split('.')
+      if (parts.length > 2) {
+        cleanValue = parts.slice(0, -1).join('') + '.' + parts[parts.length - 1]
+      }
+      return parseFloat(cleanValue) || 0
     }
     return 0
   }
