@@ -119,4 +119,4 @@ class DataImportService {
   }
 }
 
-export const dataImportService = DataImportService.getInstance() 
+export const dataImportService = DataImportService.getInstance();

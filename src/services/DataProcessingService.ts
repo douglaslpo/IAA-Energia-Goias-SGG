@@ -1,19 +1,19 @@
-import Papa from 'papaparse'
-import * as XLSX from 'xlsx'
-import { format } from 'date-fns'
-import type { ProcessedDataPoint, DatasetConfig } from '@/types'
+import Papa from 'papaparse';
+import * as XLSX from 'xlsx';
+import { format } from 'date-fns';
+import type { ProcessedDataPoint, DatasetConfig } from '@/types';
+import { DEFAULT_DATASET_CONFIGS, type DatasetType } from './datasetConfigs';
 
 export interface RawDataRow {
   [key: string]: any
 }
 
 class DataProcessingService {
-  private static instance: DataProcessingService
-  private datasetConfigs: Map<string, DatasetConfig>
+  private static instance: DataProcessingService;
+  private datasetConfigs: Map<DatasetType, DatasetConfig>;
 
   private constructor() {
-    this.datasetConfigs = new Map()
-    this.initializeDatasetConfigs()
+    this.datasetConfigs = new Map(Object.entries(DEFAULT_DATASET_CONFIGS) as [DatasetType, DatasetConfig][]);
   }
 
   static getInstance(): DataProcessingService {
@@ -23,65 +23,8 @@ class DataProcessingService {
     return DataProcessingService.instance
   }
 
-  private initializeDatasetConfigs() {
-    // Configuração para dados da EPE
-    this.datasetConfigs.set('epe', {
-      name: 'Dados EPE',
-      description: 'Dados de consumo energético da EPE',
-      source: 'EPE',
-      format: 'csv',
-      columns: {
-        timestamp: 'data',
-        value: 'consumo',
-        category: 'classe',
-        region: 'regiao'
-      }
-    })
 
-    // Configuração para dados da ANEEL
-    this.datasetConfigs.set('aneel', {
-      name: 'Dados ANEEL',
-      description: 'Dados de consumo energético da ANEEL',
-      source: 'ANEEL',
-      format: 'csv',
-      columns: {
-        timestamp: 'data',
-        value: 'consumo',
-        category: 'tipo_consumidor',
-        region: 'estado'
-      }
-    })
-
-    // Configuração para dados meteorológicos
-    this.datasetConfigs.set('meteo', {
-      name: 'Dados Meteorológicos',
-      description: 'Dados meteorológicos por região',
-      source: 'INMET',
-      format: 'csv',
-      columns: {
-        timestamp: 'data',
-        value: 'temperatura',
-        category: 'tipo_medicao',
-        region: 'estacao'
-      }
-    })
-
-    // Configuração para dados do censo
-    this.datasetConfigs.set('censo', {
-      name: 'Dados do Censo',
-      description: 'Dados demográficos do IBGE',
-      source: 'IBGE',
-      format: 'xlsx',
-      columns: {
-        timestamp: 'ano',
-        value: 'populacao',
-        category: 'faixa_etaria',
-        region: 'municipio'
-      }
-    })
-  }
-
-  async processFile(file: File, datasetType: string): Promise<ProcessedDataPoint[]> {
+  async processFile(file: File, datasetType: DatasetType): Promise<ProcessedDataPoint[]> {
     const config = this.datasetConfigs.get(datasetType)
     if (!config) {
       throw new Error(`Tipo de dataset não configurado: ${datasetType}`)
@@ -207,4 +150,4 @@ class DataProcessingService {
   }
 }
 
-export const dataProcessingService = DataProcessingService.getInstance() 
+export const dataProcessingService = DataProcessingService.getInstance();
