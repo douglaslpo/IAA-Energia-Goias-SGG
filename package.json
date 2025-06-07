@@ -1,0 +1,53 @@
+{
+  "name": "vue-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "format": "prettier --write src/",
+    "clean": "rm -rf dist node_modules/.cache",
+    "setup": "npm install && npm run lint && npm run format",
+    "start": "npm run setup && npm run dev",
+    "start:prod": "npm run setup && npm run build && npm run preview",
+    "check:types": "vue-tsc --noEmit",
+    "validate": "npm run lint && npm run check:types && npm run test"
+  },
+  "dependencies": {
+    "@mdi/font": "^7.4.47",
+    "axios": "^1.6.7",
+    "chart.js": "^4.4.1",
+    "date-fns": "^3.3.1",
+    "papaparse": "^5.4.1",
+    "pinia": "^2.1.7",
+    "roboto-fontface": "*",
+    "vue": "^3.4.15",
+    "vue-chartjs": "^5.3.0",
+    "vue-router": "^4.2.5",
+    "vuetify": "^3.5.4",
+    "webfontloader": "^1.6.28"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/papaparse": "^5.3.14",
+    "@types/webfontloader": "^1.6.38",
+    "@vitejs/plugin-vue": "^5.0.3",
+    "@vue/eslint-config-prettier": "^8.0.0",
+    "@vue/eslint-config-typescript": "^12.0.0",
+    "@vue/test-utils": "^2.4.4",
+    "eslint": "^8.56.0",
+    "eslint-plugin-vue": "^9.21.1",
+    "jsdom": "^24.0.0",
+    "prettier": "^3.2.5",
+    "sass": "^1.71.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12",
+    "vite-plugin-vuetify": "^2.0.1",
+    "vitest": "^1.2.2",
+    "vue-tsc": "^1.8.27"
+  }
+}

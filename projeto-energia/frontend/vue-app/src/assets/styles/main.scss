@@ -1,0 +1,271 @@
+@use './variables.scss' as *;
+@use './mixins.scss' as *;
+
+// Variáveis
+:root {
+  // Cores
+  --primary: #1976D2;
+  --secondary: #424242;
+  --accent: #82B1FF;
+  --error: #FF5252;
+  --info: #2196F3;
+  --success: #4CAF50;
+  --warning: #FFC107;
+
+  // Espaçamento
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  // Tipografia
+  --font-family: 'Roboto', sans-serif;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 24px;
+
+  // Bordas
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 16px;
+
+  // Sombras
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 2px 6px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.18);
+  --shadow-xl: 0 8px 24px rgba(0, 0, 0, 0.22);
+
+  // Z-index
+  --z-index-dropdown: 1000;
+  --z-index-modal: 2000;
+  --z-index-tooltip: 3000;
+}
+
+// Mixins
+@mixin flex($direction: row, $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin grid($columns: 1, $gap: var(--spacing-md)) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+@mixin shadow($size: md) {
+  box-shadow: var(--shadow-#{$size});
+}
+
+@mixin transition($property: all, $duration: 0.3s) {
+  transition: $property $duration ease-in-out;
+}
+
+// Classes utilitárias
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.font-weight-bold { font-weight: bold; }
+.font-weight-medium { font-weight: 500; }
+.font-weight-regular { font-weight: 400; }
+.font-weight-light { font-weight: 300; }
+
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.text-accent { color: var(--accent); }
+.text-error { color: var(--error); }
+.text-info { color: var(--info); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+
+.ma-0 { margin: 0; }
+.pa-0 { padding: 0; }
+.ma-1 { margin: var(--spacing-xs); }
+.pa-1 { padding: var(--spacing-xs); }
+.ma-2 { margin: var(--spacing-sm); }
+.pa-2 { padding: var(--spacing-sm); }
+.ma-3 { margin: var(--spacing-md); }
+.pa-3 { padding: var(--spacing-md); }
+.ma-4 { margin: var(--spacing-lg); }
+.pa-4 { padding: var(--spacing-lg); }
+.ma-5 { margin: var(--spacing-xl); }
+.pa-5 { padding: var(--spacing-xl); }
+
+.d-flex { display: flex; }
+.d-inline-flex { display: inline-flex; }
+.flex-row { flex-direction: row; }
+.flex-column { flex-direction: column; }
+.justify-start { justify-content: flex-start; }
+.justify-end { justify-content: flex-end; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.align-start { align-items: flex-start; }
+.align-end { align-items: flex-end; }
+.align-center { align-items: center; }
+.align-baseline { align-items: baseline; }
+.align-stretch { align-items: stretch; }
+
+.position-relative { position: relative; }
+.position-absolute { position: absolute; }
+.position-fixed { position: fixed; }
+
+.w-100 { width: 100%; }
+.h-100 { height: 100%; }
+
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-scroll { overflow: scroll; }
+
+.rounded-sm { border-radius: var(--border-radius-sm); }
+.rounded-md { border-radius: var(--border-radius-md); }
+.rounded-lg { border-radius: var(--border-radius-lg); }
+.rounded-xl { border-radius: var(--border-radius-xl); }
+
+.elevation-1 { @include shadow(sm); }
+.elevation-2 { @include shadow(md); }
+.elevation-3 { @include shadow(lg); }
+.elevation-4 { @include shadow(xl); }
+
+// Animações
+.fade-enter-active,
+.fade-leave-active {
+  @include transition(opacity);
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  @include transition(transform);
+}
+
+.slide-enter-from {
+  transform: translateX(-100%);
+}
+
+.slide-leave-to {
+  transform: translateX(100%);
+}
+
+// Reset global
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Classes utilitárias
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--spacing-md);
+}
+
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+// Atualiza todos os componentes para usar variáveis CSS
+.card {
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  background-color: white;
+  padding: var(--spacing-md);
+}
+
+.button {
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+}
+
+.form-group {
+  margin-bottom: var(--spacing-md);
+}
+
+.input {
+  border-radius: var(--border-radius-sm);
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  font-size: var(--font-size-md);
+  width: 100%;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+  }
+}
+
+.alert {
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+
+  &.alert-success {
+    background-color: var(--success-color);
+    color: white;
+  }
+
+  &.alert-error {
+    background-color: var(--error-color);
+    color: white;
+  }
+
+  &.alert-warning {
+    background-color: var(--warning-color);
+    color: white;
+  }
+
+  &.alert-info {
+    background-color: var(--info-color);
+    color: white;
+  }
+} 

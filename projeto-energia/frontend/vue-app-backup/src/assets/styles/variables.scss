@@ -1,0 +1,89 @@
+// Cores principais
+$primary: #1976D2;
+$secondary: #424242;
+$accent: #82B1FF;
+$error: #FF5252;
+$info: #2196F3;
+$success: #4CAF50;
+$warning: #FFC107;
+
+// Cores de fundo
+$background-primary: #FFFFFF;
+$background-secondary: #F5F5F5;
+$background-tertiary: #EEEEEE;
+
+// Cores de texto
+$text-primary: rgba(0, 0, 0, 0.87);
+$text-secondary: rgba(0, 0, 0, 0.6);
+$text-disabled: rgba(0, 0, 0, 0.38);
+
+// Breakpoints
+$breakpoint-xs: 600px;
+$breakpoint-sm: 960px;
+$breakpoint-md: 1264px;
+$breakpoint-lg: 1904px;
+
+// Espaçamento
+$spacing-unit: 8px;
+$spacing-xs: $spacing-unit;
+$spacing-sm: $spacing-unit * 2;
+$spacing-md: $spacing-unit * 3;
+$spacing-lg: $spacing-unit * 4;
+$spacing-xl: $spacing-unit * 5;
+
+// Tipografia
+$font-family-primary: 'Roboto', sans-serif;
+$font-family-secondary: 'Open Sans', sans-serif;
+
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 16px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+
+// Bordas
+$border-radius-sm: 4px;
+$border-radius-md: 8px;
+$border-radius-lg: 12px;
+$border-width: 1px;
+$border-color: rgba(0, 0, 0, 0.12);
+
+// Sombras
+$shadow-1: 0 2px 4px rgba(0, 0, 0, 0.1);
+$shadow-2: 0 4px 8px rgba(0, 0, 0, 0.1);
+$shadow-3: 0 8px 16px rgba(0, 0, 0, 0.1);
+$shadow-4: 0 16px 24px rgba(0, 0, 0, 0.1);
+
+// Transições
+$transition-duration: 0.3s;
+$transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+
+// Z-index
+$z-index-drawer: 1000;
+$z-index-modal: 2000;
+$z-index-tooltip: 3000;
+$z-index-snackbar: 4000;
+
+// Gráficos
+$chart-colors: (
+  'blue': #2196F3,
+  'green': #4CAF50,
+  'orange': #FF9800,
+  'red': #F44336,
+  'purple': #9C27B0,
+  'cyan': #00BCD4
+);
+
+// Temas
+$themes: (
+  'light': (
+    'background': $background-primary,
+    'surface': $background-secondary,
+    'text': $text-primary
+  ),
+  'dark': (
+    'background': #121212,
+    'surface': #1E1E1E,
+    'text': #FFFFFF
+  )
+); 

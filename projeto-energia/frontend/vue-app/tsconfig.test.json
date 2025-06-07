@@ -1,0 +1,11 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "types": ["node", "jsdom", "vitest/globals"],
+    "isolatedModules": false
+  },
+  "include": ["tests/**/*.ts", "tests/**/*.tsx", "tests/**/*.vue"],
+  "exclude": ["node_modules"]
+} 

@@ -1,0 +1,10 @@
+data,consumo,tipo_consumidor,estado,tarifa,num_unidades
+2023-01-01,15250.8,residencial,SP,0.65,12500
+2023-01-01,42500.3,industrial,SP,0.58,850
+2023-01-01,28750.5,comercial,SP,0.62,3200
+2023-01-02,14980.2,residencial,SP,0.65,12480
+2023-01-02,43200.7,industrial,SP,0.58,855
+2023-01-02,29100.4,comercial,SP,0.62,3220
+2023-01-03,15500.6,residencial,SP,0.65,12550
+2023-01-03,41800.9,industrial,SP,0.58,848
+2023-01-03,28900.2,comercial,SP,0.62,3210 

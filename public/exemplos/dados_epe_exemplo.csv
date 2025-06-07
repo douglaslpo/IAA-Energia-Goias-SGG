@@ -1,0 +1,10 @@
+data,consumo,classe,regiao,tensao,fator_carga
+2023-01-01,1250.5,residencial,sudeste,127,0.85
+2023-01-01,3500.2,industrial,sudeste,380,0.92
+2023-01-01,850.3,comercial,sudeste,220,0.78
+2023-01-02,1180.4,residencial,sudeste,127,0.83
+2023-01-02,3600.1,industrial,sudeste,380,0.91
+2023-01-02,920.7,comercial,sudeste,220,0.81
+2023-01-03,1350.2,residencial,sudeste,127,0.86
+2023-01-03,3450.5,industrial,sudeste,380,0.90
+2023-01-03,880.9,comercial,sudeste,220,0.79 

@@ -1,0 +1,162 @@
+// Mixins para responsividade
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint '#{$breakpoint}' não encontrado no mapa $breakpoints.";
+  }
+}
+
+// Mixin para flexbox
+@mixin flex($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+// Mixin para grid
+@mixin grid($columns: 1, $gap: var(--spacing-md)) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Mixin para transições
+@mixin transition($properties...) {
+  $transitions: ();
+  @each $property in $properties {
+    $transitions: append($transitions, $property var(--transition-normal), comma);
+  }
+  transition: $transitions;
+}
+
+// Mixin para sombras
+@mixin shadow($level: md) {
+  @if $level == sm {
+    box-shadow: var(--shadow-sm);
+  }
+  @else if $level == md {
+    box-shadow: var(--shadow-md);
+  }
+  @else if $level == lg {
+    box-shadow: var(--shadow-lg);
+  }
+  @else if $level == xl {
+    box-shadow: var(--shadow-xl);
+  }
+}
+
+// Mixin para texto truncado
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// Mixin para botões
+@mixin button-variant($background, $color: white, $hover-darken: 10%) {
+  background-color: $background;
+  color: $color;
+  border: none;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  @include transition(background-color, transform);
+
+  &:hover {
+    background-color: darken($background, $hover-darken);
+    transform: translateY(-2px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// Mixin para cards
+@mixin card($padding: var(--spacing-md), $radius: var(--border-radius-lg)) {
+  background-color: white;
+  border-radius: $radius;
+  padding: $padding;
+  @include shadow(md);
+}
+
+// Mixin para inputs
+@mixin input-base {
+  width: 100%;
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-md);
+  line-height: 1.5;
+  transition: border-color var(--transition-normal);
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+  }
+
+  &:disabled {
+    background-color: var(--background-tertiary);
+    cursor: not-allowed;
+  }
+}
+
+// Mixin de animação de loading
+@mixin loading-animation {
+  @keyframes loading {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.7; }
+    100% { opacity: 0.3; }
+  }
+
+  animation: loading 1.5s infinite;
+}
+
+// Mixin de scrollbar personalizada
+@mixin custom-scrollbar($width: 8px, $track-color: $background-secondary, $thumb-color: $primary) {
+  &::-webkit-scrollbar {
+    width: $width;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: $width / 2;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $width / 2;
+
+    &:hover {
+      background: darken($thumb-color, 10%);
+    }
+  }
+}
+
+// Mixin de tema
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      @content($map);
+    }
+  }
+} 
